@@ -15,8 +15,6 @@ const good = 'standard_user'
   })
   
   it('Изменение фильтра', () => {
-    cy.get('[data-test="username"]').type(`${good}`)
-    cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
     cy.get('[class="product_sort_container"]').select('Price (high to low)')
     cy.get('.inventory_item_price').then($prices => {
     })
@@ -24,16 +22,12 @@ const good = 'standard_user'
 
 
     it('Проверка добавления товара в корзину', () => {
-      cy.get('[data-test="username"]').type(`${good}`)
-      cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item:first-child .btn_primary').click()
       cy.get('.shopping_cart_badge').should('have.text', '1')
     })
 
   
     it('Добавление и Удаление трех разных товаров из корзины', () => {
-      cy.get('[data-test="username"]').type(`${good}`)
-      cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item_name').eq(0).invoke('text').as('firstProductName')
       cy.get('.inventory_item').eq(0).find('.btn_primary').click()
       cy.get('.shopping_cart_badge').should('contain', '1')
@@ -56,20 +50,14 @@ const good = 'standard_user'
     })
  
     it('Добавление товара, нажатие на кнопку "Checkout" и заполнение полей', () => {
-      cy.get('[data-test="username"]').type(`${good}`)
-      cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item_name').eq(0).invoke('text').as('productName')
       cy.get('.inventory_item').eq(0).find('.btn_primary').click()
       cy.get('.shopping_cart_badge').should('contain', '1')
-  
       cy.get('.shopping_cart_link').click()
       cy.get('.cart_footer').eq(0).find('.btn_action').click()
-      // Заполнение полей для оформления заказа
       cy.get('[data-test=firstName]').type('John')
       cy.get('[data-test=lastName]').type('Doe')
       cy.get('[data-test=postalCode]').type('12345')
-  
-      // Нажатие на кнопку "Continue"
       cy.get('.checkout_buttons').find('.btn_primary').click()
     })
   }) 
