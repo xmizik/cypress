@@ -1,29 +1,21 @@
 describe('sauce', () => {
-
-
   beforeEach(() => { 
-
+const wrong = 'vitya_god'
+const good = 'standard_user'
     cy.visit('https://www.saucedemo.com/v1/')
   
   })
   it('Проверка неправильного входа', () => {
-    const newItem = 'vitya_god'
-
-    cy.get('[data-test="username"]').type(`${newItem}`)
+    cy.get('[data-test="username"]').type(`${wrong}`)
     cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
   })
   it('Проверка входа', () => {
-    const newItem = 'standard_user'
-
-    cy.get('[data-test="username"]').type(`${newItem}`)
+    cy.get('[data-test="username"]').type(`${good}`)
     cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
   })
   
   it('Изменение фильтра', () => {
-     
-    const newItem = 'standard_user'
-
-    cy.get('[data-test="username"]').type(`${newItem}`)
+    cy.get('[data-test="username"]').type(`${good}`)
     cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
     cy.get('[class="product_sort_container"]').select('Price (high to low)')
     cy.get('.inventory_item_price').then($prices => {
@@ -32,9 +24,7 @@ describe('sauce', () => {
 
 
     it('Проверка добавления товара в корзину', () => {
-      const newItem = 'standard_user'
-
-      cy.get('[data-test="username"]').type(`${newItem}`)
+      cy.get('[data-test="username"]').type(`${good}`)
       cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item:first-child .btn_primary').click()
       cy.get('.shopping_cart_badge').should('have.text', '1')
@@ -42,10 +32,7 @@ describe('sauce', () => {
 
   
     it('Добавление и Удаление трех разных товаров из корзины', () => {
-       
-      const newItem = 'standard_user'
-
-      cy.get('[data-test="username"]').type(`${newItem}`)
+      cy.get('[data-test="username"]').type(`${good}`)
       cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item_name').eq(0).invoke('text').as('firstProductName')
       cy.get('.inventory_item').eq(0).find('.btn_primary').click()
@@ -69,9 +56,7 @@ describe('sauce', () => {
     })
  
     it('Добавление товара, нажатие на кнопку "Checkout" и заполнение полей', () => {
-      const newItem = 'standard_user'
-
-      cy.get('[data-test="username"]').type(`${newItem}`)
+      cy.get('[data-test="username"]').type(`${good}`)
       cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
       cy.get('.inventory_item_name').eq(0).invoke('text').as('productName')
       cy.get('.inventory_item').eq(0).find('.btn_primary').click()
@@ -86,8 +71,5 @@ describe('sauce', () => {
   
       // Нажатие на кнопку "Continue"
       cy.get('.checkout_buttons').find('.btn_primary').click()
-  
-      // Добавьте здесь проверки, которые вам необходимы после нажатия на кнопку "Continue"
     })
-
   }) 
