@@ -3,6 +3,11 @@ describe('demoblaze', () => {
     cy.visit('https://www.demoblaze.com/')
   })
 
+
+it('Сайт работоспособный', () => {
+// Переход на сайт
+ cy.visit('https://www.demoblaze.com/')
+})
   it('Проверка возможна ли покупка с пустой корзиной', () => {
     cy.get('#cartur').click()
     cy.contains('Place Order').click()
