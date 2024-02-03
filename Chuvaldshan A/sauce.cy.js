@@ -7,7 +7,7 @@ describe('sauce', () => {
   
   })
   it('Проверка неправильного входа', () => {
-    const newItem = 'vitya_228_1337_govno'
+    const newItem = 'vitya_god'
 
     cy.get('[data-test="username"]').type(`${newItem}`)
     cy.get('[data-test="password"]').type(`secret_sauce{enter}`)
